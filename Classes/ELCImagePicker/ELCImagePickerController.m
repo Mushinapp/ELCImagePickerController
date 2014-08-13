@@ -13,15 +13,13 @@
 #import "ELCAlbumPickerController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
-#import "EYLargePhotoHeader.h"
 #import "ELCConsole.h"
 
 @implementation ELCImagePickerController
 
 //Using auto synthesizers
 
-- (id)initImagePicker
-{
+- (id)initImagePicker {
     ELCAlbumPickerController *albumPicker = [[ELCAlbumPickerController alloc] initWithStyle:UITableViewStylePlain];
     
     self = [super initWithRootViewController:albumPicker];
@@ -35,8 +33,7 @@
     return self;
 }
 
-- (id)initWithRootViewController:(UIViewController *)rootViewController
-{
+- (id)initWithRootViewController:(UIViewController *)rootViewController {
 
     self = [super initWithRootViewController:rootViewController];
     if (self) {
@@ -46,30 +43,25 @@
     return self;
 }
 
-- (ELCAlbumPickerController *)albumPicker
-{
+- (ELCAlbumPickerController *)albumPicker {
     return self.viewControllers[0];
 }
 
-- (void)setMediaTypes:(NSArray *)mediaTypes
-{
+- (void)setMediaTypes:(NSArray *)mediaTypes {
     self.albumPicker.mediaTypes = mediaTypes;
 }
 
-- (NSArray *)mediaTypes
-{
+- (NSArray *)mediaTypes {
     return self.albumPicker.mediaTypes;
 }
 
-- (void)cancelImagePicker
-{
+- (void)cancelImagePicker {
 	if ([_imagePickerDelegate respondsToSelector:@selector(elcImagePickerControllerDidCancel:)]) {
 		[_imagePickerDelegate performSelector:@selector(elcImagePickerControllerDidCancel:) withObject:self];
 	}
 }
 
-- (BOOL)shouldSelectAsset:(ELCAsset *)asset previousCount:(NSUInteger)previousCount
-{
+- (BOOL)shouldSelectAsset:(ELCAsset *)asset previousCount:(NSUInteger)previousCount {
     BOOL shouldSelect = previousCount < self.maximumImagesCount;
     if (!shouldSelect) {
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Only %d photos please!", nil), self.maximumImagesCount];
@@ -88,8 +80,7 @@
     return YES;
 }
 
-- (void)selectedAssets:(NSArray *)assets
-{
+- (void)selectedAssets:(NSArray *)assets {
 	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
 	
 	for(ELCAsset *elcasset in assets) {
@@ -142,8 +133,7 @@
     }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return YES;
     } else {
@@ -151,13 +141,11 @@
     }
 }
 
-- (BOOL)onOrder
-{
+- (BOOL)onOrder {
     return [[ELCConsole mainConsole] onOrder];
 }
 
-- (void)setOnOrder:(BOOL)onOrder
-{
+- (void)setOnOrder:(BOOL)onOrder {
     [[ELCConsole mainConsole] setOnOrder:onOrder];
 }
 
