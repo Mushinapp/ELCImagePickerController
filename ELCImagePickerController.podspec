@@ -8,8 +8,8 @@ Pod::Spec.new do |s|
       :file => 'README.md'
     }
     s.author = {'ELC Technologies' => 'http://elctech.com'}
-    s.source = {:git => 'https://github.com/elc/ELCImagePickerController.git',
-    			:tag => '0.2.0'
+    s.source = {:git => 'https://github.com/Mushinapp/ELCImagePickerController.git',
+    			:tag => '0.2.0-mushin'
     		   }
     s.platform = :ios, '6.0'
     s.resources = 'Classes/**/*.{xib,png}'
